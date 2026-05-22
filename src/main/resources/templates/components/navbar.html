@@ -1,0 +1,120 @@
+<nav th:fragment="nav-bar" class="navbar navbar-dark fixed-top">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+        <!-- LOGO Y NOMBRE A LA IZQUIERDA -->
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/img/logoComoPaPobre.png}" alt="Logo" width="60" height="60"
+                class="d-inline-block align-text-top">
+            <span th:text="#{navbar.nombre}">Como Pa Pobre</span>
+        </a>
+
+        <!-- SECCIÓN DERECHA: IDIOMAS + CARRITO + BOTÓN MENÚ -->
+        <div class="d-flex align-items-center ms-auto">
+
+            <!-- Idiomas -->
+            <div class="me-3">
+                <a href="?lang=es" class="text-white me-2" th:text="#{navbar.espanol}">Español</a>
+                <a href="?lang=en" class="text-white" th:text="#{navbar.ingles}">English</a>
+            </div>
+
+            <!-- Carrito de Compras -->
+            <div class="dropdown me-3">
+                <a class="text-white dropdown-toggle" href="#" role="button" id="cartDropdown"
+                    data-bs-toggle="dropdown">
+                    <i class="fas fa-shopping-cart fa-lg"></i>
+                    <span class="badge bg-warning" id="cartCount">0</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="cartDropdown">
+                    <div class="cart-dropdown">
+                        <div class="d-flex justify-content-between align-items-center px-3 pt-2">
+                            <h6 class="dropdown-header mb-0">Tu Pedido</h6>
+                            <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
+                        </div>
+                        <div id="cartItems" class="px-3" style="max-height: 50vh; overflow-y: auto;"></div>
+                        <div class="dropdown-divider"></div>
+                        <div class="px-3 pb-2">
+                            <div class="d-flex justify-content-between fw-bold mb-2">
+                                <span>Total:</span>
+                                <span>S/ <span id="cartTotal">0.00</span></span>
+                            </div>
+                            <button class="btn btn-warning w-100" onclick="checkout(event)">Realizar Pedido</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón menú desplegable -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <!-- MENÚ DESPLEGABLE (OFFCANVAS) -->
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" th:text="#{navbar.nombre}">Como Pa Pobre</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}" th:text="#{navbar.inicio}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/login}" th:text="#{navbar.iniciarSesion}">Iniciar sesión</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            th:text="#{navbar.menu}">Menú</a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" th:href="@{/menuhambur}"
+                                    th:text="#{navbar.menu1}">Hamburguesas</a></li>
+                            <li><a class="dropdown-item" th:href="@{/menualit}" th:text="#{navbar.menu2}">Alitas</a>
+                            </li>
+                            <li><a class="dropdown-item" th:href="@{/menusalchi}"
+                                    th:text="#{navbar.menu3}">Salchipapas</a></li>
+                            <li><a class="dropdown-item" th:href="@{/menupech}" th:text="#{navbar.menu4}">Pechugas</a>
+                            </li>
+                            <li><a class="dropdown-item" th:href="@{/menubebid}" th:text="#{navbar.menu5}">Bebidas</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/promociones}" th:text="#{navbar.promociones}">Promociones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/nosotros}" th:text="#{navbar.nosotros}">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/contacto}" th:text="#{navbar.contacto}">Contacto</a>
+                    </li>
+                </ul>
+
+
+                <!-- CERRAR SESION -->
+                
+                <div sec:authorize="isAuthenticated()" class="d-flex justify-content-center my-4">
+                    <form th:action="@{/logout}" method="post" onsubmit="return confirm('¿Seguro de cerrar sesión?');">
+                        <button type="submit" class="btn btn-danger px-4">Cerrar sesión</button>
+                    </form>
+                </div>
+
+
+                <!-- REDES SOCIALES -->
+                <div class="social-menu">
+                    <h6 class="text-secondary text-center mb-3" th:text="#{navbar.redesSociales}">Redes Sociales</h6>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="https://www.facebook.com/comopa.pobre/about" class="text-secondary"><i
+                                class="fab fa-facebook fa-lg"></i></a>
+                        <a href="https://www.tiktok.com/@como_papobre" class="text-secondary"><i
+                                class="fab fa-tiktok fa-lg"></i></a>
+                        <a href="https://www.instagram.com/como_papobre/" class="text-secondary"><i
+                                class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</nav>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Menu</title>
+    <link rel="stylesheet" th:href="@{/css/listahambur.css}">
+</head>
+<body>
+    
+
+    <button class="btn-volver" onclick="window.history.back()">&#8592; Volver</button>
+    <h1>Menu Disponible</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="hamburguesa : ${hamburguesas}">
+                <td th:text="${hamburguesa.id}"></td>
+                <td th:text="${hamburguesa.nombre}"></td>
+                <td th:text="${hamburguesa.descripcion}"></td>
+                <td th:text="${hamburguesa.precio}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

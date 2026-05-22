@@ -1,0 +1,134 @@
+-- Crear base de datos
+CREATE DATABASE IF NOT EXISTS cpp;
+USE cpp;
+DROP DATABASE cpp
+
+CREATE TABLE hamburguesa (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    precio DOUBLE NOT NULL
+);
+
+CREATE TABLE reclamaciones (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+
+    nombre VARCHAR(100) NOT NULL,
+
+    apellido_paterno VARCHAR(100) NOT NULL,
+    apellido_materno VARCHAR(100) NOT NULL,
+
+    domicilio VARCHAR(255) NOT NULL,
+
+    telefono VARCHAR(20) NOT NULL,
+
+    tipo_documento VARCHAR(30) NOT NULL,
+    numero_documento VARCHAR(20) NOT NULL,
+
+    correo VARCHAR(100) NOT NULL,
+
+    tipo_bien VARCHAR(50) NOT NULL,
+
+    fecha_incidente DATE NOT NULL,
+
+    monto_reclamado DOUBLE,
+
+    descripcion_bien TEXT,
+
+    tipo_reclamo VARCHAR(50),
+
+    detalle_reclamo TEXT,
+
+    pedido_consumidor TEXT,
+
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE sugerencias (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+
+    nombre VARCHAR(100) NOT NULL,
+
+    email VARCHAR(100) NOT NULL,
+
+    descripcion TEXT NOT NULL,
+
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE roles (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE users (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+
+    nombre VARCHAR(100),
+
+    correo VARCHAR(100),
+
+    username VARCHAR(100) NOT NULL UNIQUE,
+
+    password VARCHAR(255) NOT NULL,
+
+    enabled BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE user_roles (
+    user_id BIGINT NOT NULL,
+    role_id BIGINT NOT NULL,
+
+    PRIMARY KEY (user_id, role_id),
+
+    CONSTRAINT fk_user_roles_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_user_roles_role
+        FOREIGN KEY (role_id)
+        REFERENCES roles(id)
+        ON DELETE CASCADE
+);
+
+INSERT INTO roles(name) VALUES ('ROLE_ADMIN');
+INSERT INTO roles(name) VALUES ('ROLE_USER');
+
+
+INSERT INTO hamburguesa (nombre, descripcion, precio) VALUES
+('Alitas BBQ - 4 piezas', '4 piezas + papas + cremas', 18.00),
+('Alitas BBQ - 6 piezas', '6 piezas + papas + cremas', 23.00),
+('Alitas BBQ - 10 piezas', '10 piezas + papas + cremas', 35.00),
+('Alitas Crispy - 4 piezas', '4 piezas + papas + cremas', 20.00),
+('Alitas Crispy - 6 piezas', '6 piezas + papas + cremas', 25.00),
+('Alitas Crispy - 10 piezas', '10 piezas + papas + cremas', 40.00),
+('Alitas Acevichadas - 4 piezas', '4 piezas + papas + cremas', 22.00),
+('Alitas Acevichadas - 6 piezas', '6 piezas + papas + cremas', 27.00),
+('Alitas Acevichadas - 10 piezas', '10 piezas + papas + cremas', 42.00),
+('Coca Cola 1L', 'Bebida gaseosa Coca Cola de 1 litro', 6.00),
+('Inka Cola 1L', 'Bebida gaseosa Inka Cola de 1 litro', 6.00),
+('Refresco de Maracuyá 1L', 'Refresco natural de maracuyá de 1 litro', 9.00),
+('Chicha Morada 1L', 'Chicha morada casera de 1 litro', 9.00),
+('Hamburguesa La Clásica', 'Pan + Hamburguesa casera + Papas fritas', 10.00),
+('Hamburguesa La Americana', 'Pan + Hamburguesa casera + Jamón + Queso + Papas fritas', 12.00),
+('Hamburguesa La Royal', 'Pan + Hamburguesa casera + Huevo + Queso + Papas fritas', 13.00),
+('Hamburguesa La Charapa', 'Pan + Hamburguesa casera + Huevo + Plátano + Papas fritas', 14.00),
+('Hamburguesa La Hawaiana', 'Pan + Hamburguesa casera + Jamón + Queso + Piña + Papas fritas', 13.00),
+('Hamburguesa La Carnivora', 'Pan + Hamburguesa casera + Jamón + Queso + Huevo + Tocino + Papas fritas', 16.00),
+('Hamburguesa La Hawaiana Extrema', 'Pan + Doble Hamburguesa casera + Doble Jamón + Doble Queso + Doble Piña + Papas fritas', 20.00),
+('Hamburguesa La Carnivora Extrema', 'Pan + Doble Hamburguesa casera + Doble Jamón + Doble Queso + Doble Huevo + Doble Tocino + Papas fritas', 25.00),
+('Pechuga Clásica', 'Pechuga empanizada + Papas fritas + Ensalada', 15.00),
+('Pechuga a la BBQ', 'Pechuga empanizada con salsa BBQ + Papas fritas + Ensalada', 17.00),
+('Pechuga Hawaiana', 'Pechuga empanizada con jamón, queso y piña + Papas fritas + Ensalada', 18.00),
+('Pechuga Suprema', 'Pechuga empanizada con huevo y doble queso + Papas fritas + Ensalada + Arroz', 20.00),
+('Pechuga Picante', 'Pechuga empanizada en salsa picante + Yucas fritas + Papas fritas + Ensalada', 19.00),
+('Salchipapa Especial', 'Papas fritas + Hotdog especial ahumado + cremas de casa', 12.00),
+('Salchipapa La Hawaiana', 'Papas fritas + Hotdog especial + piña en trozos + queso', 14.00),
+('Salchipapa La Charapa', 'Papas fritas + Hotdog especial + huevo + plátano', 15.00),
+('Salchipapa La Carnívora', 'Papas fritas + Hotdog especial + huevo + jamón + tocino', 17.00),
+('Salchipapa Como Pa Pobre', 'Papas fritas + Hotdog especial + huevo + hamburguesa casera + queso', 18.00),
+('Salchialitas', 'Papas fritas + Hotdog especial + 4 alitas BBQ o fritas + cremas de casa', 22.00);
+
+select * from users

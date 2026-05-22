@@ -1,0 +1,258 @@
+<div th:fragment="footer">
+    <!-- Footer Principal -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <!-- Columna 1: Logo y Redes Sociales -->
+                <div class="col-md-3">
+                    <img th:src="@{/img/logoComoPaPobre.png}" alt="Logo" width="100" height="100">
+                    <h5 th:text="#{footer.siguenos}">Síguenos en</h5>
+                    <ul class="social-links">
+                        <li><a href="https://www.facebook.com/comopa.pobre/about"><i
+                                    class="fab fa-facebook fa-lg"></i></a></li>
+                        <li><a href="https://www.instagram.com/como_papobre/"><i class="fab fa-instagram fa-lg"></i></a>
+                        </li>
+                        <li><a href="https://www.tiktok.com/@como_papobre"><i class="fab fa-tiktok fa-lg"></i></a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 2: Contacto -->
+                <div class="col-md-3">
+                    <h5 th:text="#{footer.contacto}">Contacto</h5>
+                    <ul>
+                        <li><a href="https://maps.app.goo.gl/cChMBi3RY2aku3ZA9">Mz C6 lote 14, Ventanilla, Lima,
+                                Perú</a></li>
+                        <li><a href="https://api.whatsapp.com/send?phone=51936653686">+51 936 653 686</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Ayuda -->
+                <div class="col-md-3">
+                    <h5 th:text="#{footer.ayuda}">Ayuda y Soporte</h5>
+                    <ul>
+                        <li><a th:href="@{/preguntasfrecuentes}" th:text="#{footer.faq}">Preguntas Frecuentes (FAQ)</a>
+                        </li>
+                        <li><a th:href="@{/terminosCondiciones}" th:text="#{footer.terminos}">Términos y Condiciones</a>
+                        </li>
+                        <li><a href="#" th:text="#{footer.sugerencias}" data-bs-toggle="modal"
+                                data-bs-target="#sugerenciasModal">Sugerencias</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Métodos de pago -->
+                <div class="col-md-3">
+                    <img th:src="@{/img/libroReclamaciones.png}" alt="Libro de reclamaciones" width="160" height="100"
+                        class="d-inline-block align-text-top" data-bs-toggle="modal"
+                        data-bs-target="#reclamacionesModal">
+                    <h5 th:text="#{footer.pago}">Métodos de Pago</h5>
+                    <div class="payment-methods">
+                        <img th:src="@{/img/visa.png}" alt="Visa" width="40" class="me-2">
+                        <img th:src="@{/img/yape.webp}" alt="Yape" width="40" class="me-2">
+                        <img th:src="@{/img/plin.png}" alt="Plin" width="30">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center mt-4">
+                <p class="mb-0" th:text="#{footer.derechos}">&copy; 2025 ComoPaPobre. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Reclamaciones -->
+    <div class="modal fade" id="reclamacionesModal" tabindex="-1" aria-labelledby="reclamacionesModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reclamacionesModalLabel" th:text="#{titulo.reclamaciones}">Reclamación
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="textoNbre" th:text="#{empresa.nombre}">ComoPaPobre</p>
+                    <p class="textoNbre" th:text="#{empresa.direccion}">Mz C6 lote 14, Ventanilla, Lima, Perú</p>
+
+                    <h3 class="text-center mb-4" th:text="#{titulo.reclamaciones}">¡REGISTRA TU RECLAMACIÓN!</h3>
+
+                    <form class="row g-3" th:action="@{/reclamaciones/enviar}" method="post"
+                        enctype="multipart/form-data">
+                        <div class="col-md-4">
+                            <label for="nombre" class="form-label" th:text="#{form.nombre}">Nombres</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="apellidoPaterno" class="form-label" th:text="#{form.apellidoPaterno}">Apellido
+                                Paterno</label>
+                            <input type="text" class="form-control" id="apellidoPaterno" name="apellidoPaterno"
+                                required />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="apellidoMaterno" class="form-label" th:text="#{form.apellidoMaterno}">Apellido
+                                Materno</label>
+                            <input type="text" class="form-control" id="apellidoMaterno" name="apellidoMaterno"
+                                required />
+                        </div>
+
+                        <div class="col-md-8">
+                            <label for="domicilio" class="form-label" th:text="#{form.domicilio}">Domicilio</label>
+                            <input type="text" class="form-control" id="domicilio" name="domicilio" required />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="telefono" class="form-label" th:text="#{form.telefono}">Teléfono/Celular</label>
+                            <input type="tel" class="form-control" id="telefono" name="telefono" pattern="[0-9]{9}"
+                                required />
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="tipoDocumento" class="form-label" th:text="#{form.tipoDocumento}">Tipo de
+                                Documento</label>
+                            <select class="form-select" id="tipoDocumento" name="tipoDocumento" required>
+                                <option value="" disabled selected th:text="#{form.seleccionar}">Seleccionar</option>
+                                <option value="DNI" th:text="#{form.dni}">DNI</option>
+                                <option value="Carnet de Extranjería" th:text="#{form.ce}">Carnet de Extranjería
+                                </option>
+                                <option value="Pasaporte" th:text="#{form.pasaporte}">Pasaporte</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="numeroDocumento" class="form-label" th:text="#{form.numeroDocumento}">N° de
+                                Documento</label>
+                            <input type="text" class="form-control" id="numeroDocumento" name="numeroDocumento"
+                                pattern="\d{8,12}" title="Por favor, ingresa entre 8 y 12 dígitos." />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="correo" class="form-label" th:text="#{form.correo}">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="correo" name="correo" required />
+                        </div>
+
+                        <h3 class="text-warning mt-4" th:text="#{titulo.bien}">2. IDENTIFICACIÓN DEL BIEN CONTRATADO
+                        </h3>
+
+                        <div class="col-md-4">
+                            <label for="tipoBien" class="form-label" th:text="#{form.tipoBien}">Tipo de Bien</label>
+                            <select class="form-select" id="tipoBien" name="tipoBien" required>
+                                <option value="" disabled selected th:text="#{form.seleccionar}">Seleccionar</option>
+                                <option value="Producto" th:text="#{form.producto}">Producto</option>
+                                <option value="Servicio" th:text="#{form.servicio}">Servicio</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="fechaIncidente" class="form-label" th:text="#{form.fechaIncidente}">Fecha del
+                                Incidente</label>
+                            <input type="date" class="form-control" id="fechaIncidente" name="fechaIncidente"
+                                required />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="montoReclamado" class="form-label" th:text="#{form.montoReclamado}">Monto
+                                Reclamado (S/)</label>
+                            <input type="number" class="form-control" id="montoReclamado" name="montoReclamado"
+                                step="0.01" required />
+                        </div>
+
+                        <div class="col-12">
+                            <label for="descripcionBien" class="form-label"
+                                th:text="#{form.descripcionBien}">Descripción del Bien/Servicio</label>
+                            <textarea class="form-control" id="descripcionBien" name="descripcionBien" rows="3"
+                                required></textarea>
+                        </div>
+
+                        <h3 class="text-warning mt-4" th:text="#{titulo.detalle}">3. DETALLE DE LA RECLAMACIÓN</h3>
+
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tipoReclamo" id="reclamo"
+                                    value="Reclamo" required />
+                                <label class="form-check-label" for="reclamo" th:text="#{form.reclamo}">Reclamo</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tipoReclamo" id="queja" value="Queja"
+                                    required />
+                                <label class="form-check-label" for="queja" th:text="#{form.queja}">Queja</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="detalleReclamo" class="form-label" th:text="#{form.detalle}">Detalle de lo
+                                sucedido</label>
+                            <textarea class="form-control" id="detalleReclamo" name="detalleReclamo" rows="4"
+                                required></textarea>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="pedidoConsumidor" class="form-label" th:text="#{form.solucion}">¿Qué solución
+                                espera obtener?</label>
+                            <textarea class="form-control" id="pedidoConsumidor" name="pedidoConsumidor" rows="3"
+                                required></textarea>
+                        </div>
+
+                        <div class="col-12 mt-5">
+                            <button type="submit" class="btn btn-warning w-100 py-2">
+                                <i class="fas fa-paper-plane me-2"></i>
+                                <span th:text="#{form.enviarReclamacion}">ENVIAR RECLAMACIÓN</span>
+                            </button>
+                            
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Sugerencias (Estructura base) -->
+    <div th:fragment="sugerenciaModal" class="modal fade" id="sugerenciasModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" th:text="#{titulo.sugerencias}"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="textoNbre" th:text="#{empresa.nombre}">ComoPaPobre</p>
+                    <p class="textoNbre" th:text="#{empresa.direccion}">Mz C6 lote 14, Ventanilla, Lima, Perú</p>
+
+                    <h3 class="text-center mb-4" th:text="#{form.dejanosSugerencia}">¡DÉJANOS TUS SUGERENCIAS!</h3>
+
+                    <form class="row g-3" th:action="@{/sugerencias/enviar}" th:method="post">
+                        <div class="col-md-6">
+                            <label for="sugerenciaNombre" class="form-label" th:text="#{form.nombre}">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="sugerenciaEmail" class="form-label" th:text="#{form.correo}">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="sugerenciaDescripcion" class="form-label"
+                                th:text="#{form.descripcion}">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"
+                                required></textarea>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <button type="submit" class="btn btn-warning w-100 mb-3">
+                                <span th:text="#{form.enviarSugerencia}">Enviar Sugerencia</span>
+                            </button>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,190 @@
+/* ===== PROMOCIONES - VERSIÓN FINAL ===== */
+
+/* Eliminar banner hero */
+.promo-hero {
+    display: none;
+}
+
+/* Sección principal con espaciado correcto */
+.promo-section {
+    padding: 90px 15px 40px; /* Ajuste para navbar fixed */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Título centrado */
+.promo-title {
+    font-family: 'Righteous', cursive;
+    font-size: 2.2rem;
+    color: #212529;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+}
+
+.promo-title::after {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: #FFCA1A;
+}
+
+/* Contenedor de tarjetas */
+.row.g-4 {
+    margin: 0 -10px; /* Compensa el gutter */
+}
+
+/* Tarjetas con proporción correcta */
+.promo-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    margin: 0 10px 30px; /* Espaciado entre tarjetas */
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+
+/* Contenedor de imagen con relación 1:1 (cuadrada) */
+.promo-img-container {
+    width: 100%;
+    padding-top: 100%; /* Relación 1:1 */
+    position: relative;
+    overflow: hidden;
+}
+
+.promo-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.promo-card:hover .promo-img {
+    transform: scale(1.05);
+}
+
+/* Cuerpo de la tarjeta */
+.promo-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.promo-body h3 {
+    font-family: 'Righteous', cursive;
+    color: #212529;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.promo-body p {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+/* Precios bien alineados */
+.promo-price {
+    margin-top: auto; /* Empuja hacia abajo */
+    padding-top: 10px;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #dc3545;
+    font-size: 0.95rem;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.discounted-price {
+    color: #28a745;
+    font-weight: bold;
+    font-size: 1.3rem;
+    display: inline-block;
+}
+
+/* Botón de acción */
+.btn-promo {
+    background-color: #FFCA1A;
+    color: #212529;
+    border: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: all 0.3s;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 0.95rem;
+}
+
+.btn-promo:hover {
+    background-color: #e0b000;
+}
+
+.language-container {
+    transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .promo-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .promo-section {
+        padding: 80px 15px 30px;
+    }
+    
+    .promo-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        margin-top: 20px;
+    }
+    
+    .promo-body h3 {
+        font-size: 1.2rem;
+    }
+
+    .language-container {
+        position: static;
+        order: -1;
+        margin-right: auto !important;
+        padding: 5px 0;
+        width: 100%;
+        text-align: center;
+        background: rgba(33, 37, 41, 0.9);
+    }
+    
+    .navbar-brand {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .promo-img-container {
+        padding-top: 80%; /* Más rectangular en móviles */
+    }
+    
+    .promo-title {
+        font-size: 1.6rem;
+    }
+}

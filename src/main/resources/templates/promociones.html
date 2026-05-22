@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Promociones | Como Pa Pobre</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" th:href="@{/css/inicio.css}">
+    <link rel="stylesheet" th:href="@{/css/promocion.css}">
+    <link rel="icon" th:href="@{/img/logoComoPaPobre.ico}" type="image/x-icon">
+</head>
+<body>
+<!-- Navbar -->
+<nav th:replace="~{components/navbar :: nav-bar}"></nav>
+
+<!-- Sección de Promociones -->
+<div class="container">
+    <section class="promo-section">
+        <h2 class="text-center promo-title" th:text="#{titulo.promociones}">PROMOCIONES IMPERDIBLES</h2>
+        
+        <div class="row g-4">
+            <!-- Promoción 1 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="promo-card h-100">
+                    <div class="promo-img-container">
+                        <img th:src="@{/img/mega-promo.jpg}" class="promo-img" alt="Combo Noctámbulos">
+                    </div>
+                    <div class="promo-body">
+                        <h3>LA MEGA PROMO</h3>
+                        <p th:text="#{seccion.promocion1}">4 Alitas Crispy + Hamburguesa Americana + Salchipapa Especial (de Ternera)</p>
+                        <div class="promo-price">
+                            <span class="discounted-price">S/ 35.00</span>
+                        </div>
+                        <button class="btn btn-promo" th:text="#{pedir.ahora}">Pedir ahora</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Promoción 2 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="promo-card h-100">
+                    <div class="promo-img-container">
+                        <img th:src="@{/img/promo-netflix.jpg}" class="promo-img" alt="Alitas Explosivas">
+                    </div>
+                    <div class="promo-body">
+                        <h3>PROMO NETFLIX</h3>
+                        <p th:text="#{seccion.promocion2}">3 Hamburguesas Americanas + 3 porciones de papas + 1 Pespi de 750ml</p>
+                        <div class="promo-price">
+                            <span class="discounted-price">S/ 29.90</span>
+                        </div>
+                        <button class="btn btn-promo" th:text="#{pedir.ahora}">Pedir ahora</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Promoción 3 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="promo-card h-100">
+                    <div class="promo-img-container">
+                        <img th:src="@{/img/promo-oye.png}" class="promo-img" alt="Martes de Salchipapas">
+                    </div>
+                    <div class="promo-body">
+                        <h3>PROMO OYE QUE TIENES!!</h3>
+                        <p th:text="#{seccion.promocion3}">Broaster + Hamburguesa Americana + Salchipapa Especial</p>
+                        <div class="promo-price">
+                            <span class="discounted-price">S/ 35.00</span>
+                        </div>
+                        <button class="btn btn-promo" th:text="#{pedir.ahora}">Pedir ahora</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Promoción 4 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="promo-card h-100">
+                    <div class="promo-img-container">
+                        <img th:src="@{/img/promo-tiktok.jpg}" class="promo-img" alt="Desayuno Madrugador">
+                    </div>
+                    <div class="promo-body">
+                        <h3>PROMO TIK TOK</h3>
+                        <p th:text="#{seccion.promocion4}">Alitas a la BBQ 4 piezas + Salchipapa Clasica + Hamburguesa Americana + 1 Pespi de 750ml</p>
+                        <div class="promo-price">
+                            <span class="discounted-price">S/ 35.00</span>
+                        </div>
+                        <button class="btn btn-promo" th:text="#{pedir.ahora}">Pedir ahora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{components/footer :: footer}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/inicio.js}"></script>
+    <script th:src="@{/js/carrito.js}"></script>
+    <script th:src="@{/js/inactividad.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

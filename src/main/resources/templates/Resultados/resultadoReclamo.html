@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es" th:lang="${#locale.language}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{titulo.ReclamacionEnviada}">Reclamación Enviada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            background-color: rgba(236, 218, 156, 0.822);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            color: #d9534f;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .message-info {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .message-info p {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .message-info p:last-child {
+            border-bottom: none;
+        }
+        strong {
+            color: #555;
+        }
+        .back-button {
+            display: block;
+            text-align: center;
+            padding: 10px 15px;
+            background-color: #f0ad4e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 150px;
+            margin: 20px auto 0;
+        }
+        .back-button:hover {
+            background-color: #ec971f;
+        }
+        .section-title {
+            color: #f0ad4e;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #f0ad4e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 th:text="#{titulo.Reclamoenviado}">¡Gracias por tu reclamación!</h2>
+        <p th:text="#{parrafo.Reclamoenviado}">Hemos recibido tu reclamo y lo estamos procesando. A continuación los detalles:</p>
+        
+        <div class="message-info">
+            <h3 class="section-title" th:text="#{DatosReclamo.Reclamoenviado}">1. Datos del Reclamante</h3>
+            <p><strong th:text="#{nombre.Reclamoenviado}">Nombre completo:</strong> <span th:text="${nombre + ' ' + apellidoPaterno + ' ' + apellidoMaterno}"></span></p>
+            <p><strong th:text="#{documento.Reclamoenviado}">Documento:</strong> <span th:text="${tipoDocumento + ': ' + numeroDocumento}"></span></p>
+            <p><strong th:text="#{domicilio.Reclamoenviado}">Domicilio:</strong> <span th:text="${domicilio}"></span></p>
+            <p><strong th:text="#{telefono.Reclamoenviado}">Teléfono/Celular:</strong> <span th:text="${telefono}"></span></p>
+            <p><strong th:text="#{correo.Reclamoenviado}">Correo electrónico:</strong> <span th:text="${correo}"></span></p>
+        
+            <h3 class="section-title" th:text="#{informacionBien.Reclamoenviado}">2. Información del Bien/Servicio</h3>
+            <p><strong th:text="#{tipoBien.Reclamoenviado}">Tipo de bien:</strong> <span th:text="${tipoBien}"></span></p>
+            <p><strong th:text="#{fechaIncidente.Reclamoenviado}">Fecha del incidente:</strong> <span th:text="${fechaIncidente}"></span></p>
+            <p><strong th:text="#{montoReclamado.Reclamoenviado}">Monto reclamado:</strong> S/ <span th:text="${montoReclamado}"></span></p>
+            <p><strong th:text="#{descripcionBien.Reclamoenviado}">Descripción del bien/servicio:</strong> <span th:text="${descripcionBien}"></span></p>
+        
+            <h3 class="section-title" th:text="#{detallesReclamacion.Reclamoenviado}">3. Detalles de la Reclamación</h3>
+            <p><strong th:text="#{tipoReclamo.Reclamoenviado}">Tipo de reclamación:</strong> <span th:text="${tipoReclamo}"></span></p>
+            <p><strong th:text="#{detalleReclamo.Reclamoenviado}">Detalle de lo sucedido:</strong> <span th:text="${detalleReclamo}"></span></p>
+            <p><strong th:text="#{pedidoConsumidor.Reclamoenviado}">Solución esperada:</strong> <span th:text="${pedidoConsumidor}"></span></p>
+        
+            <div th:if="${archivos != null && !archivos.isEmpty()}">
+                <h3 class="section-title" th:text="#{documentosAdjuntos.Reclamoenviado}">4. Documentos Adjuntos</h3>
+                <p><strong th:text="#{archivosAdjuntos.Reclamoenviado}">Archivos adjuntos:</strong> <span th:text="${archivos}"></span></p>
+            </div>
+        </div>
+        
+        
+        <p th:text="#{parrafo2.Reclamoenviado}">Nos pondremos en contacto contigo dentro de las próximas 48 horas hábiles.</p>
+        <a href="/" class="back-button" th:text="#{botonvolverinicio.Reclamoenviado}">Volver al inicio</a>
+    </div>
+</body>
+</html>
