@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="#{titulo.preguntasfrecuentes}">Como Pa Pobre - preguntasfrecuentes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" th:href="@{/css/preguntasfrecuentes.css}">
+    <link rel="stylesheet" th:href="@{/css/inicio.css}">
+    <link rel="icon" th:href="@{/img/logoComoPaPobre.ico}" type="image/x-icon">
+</head>
+<body>
+    <!-- Navbar --> 
+    <nav th:replace="~{components/navbar :: nav-bar}"></nav>
+
+    <!-- Sección FAQ -->
+    <main class="faq-container">
+        <h1 class="faq-title" th:text="#{titulo.faq}">Preguntas Frecuentes</h1>
+        
+        <section class="faq-category">
+            <h2 th:text="#{titulo.informacion.general}">Información General</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 th:text="#{pregunta.donde.estan}">¿Dónde están ubicados?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                      <span th:text="#{respuesta.donde.estan}"></span> 
+                      <a href="https://maps.app.goo.gl/cChMBi3RY2aku3ZA9" target="_blank">Google Maps</a>. 
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 th:text="#{pregunta.horarios.atencion}">¿Cuáles son sus horarios de atención?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p th:text="#{respuesta.horarios.atencion}">Nuestro horario de atención es:<br>
+                    Lunes a Sábado de 8:30 PM a 3:00 AM</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 th:text="#{pregunta.visitar.sin.reserva}">¿Puedo visitar el restaurante sin hacer una reserva previa?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p th:text="#{respuesta.visitar.sin.reserva}">Sí, puedes venir directamente. Sin embargo, para evitar esperas, te recomendamos reservar con anticipación.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-category">
+            <h2 th:text="#{titulo.pedidos.pagos}">Pedidos y Pagos</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 th:text="#{pregunta.metodos.pago}">¿Qué métodos de pago aceptan?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p th:text="#{respuesta.metodos.pago}">Aceptamos los siguientes métodos de pago:</p>
+                    <div class="payment-methods">
+                        <img src="/img/visa.png" alt="Visa" width="50">
+                        <img src="/img/yape.webp" alt="Yape" width="40">
+                        <img src="/img/plin.png" alt="Plin" width="30">
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 th:text="#{pregunta.entregas.domicilio}">¿Hacen entregas a domicilio?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p th:text="#{respuesta.entregas.domicilio}">No realizamos entregas por el momento. Solo contamos con la opción de recojo en el local.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 th:text="#{pregunta.pedido.por.telefono}">¿Puedo realizar un pedido por teléfono?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p th:text="#{respuesta.pedido.por.telefono}">Claro, puedes hacer tu pedido llamando o escribiendo al +51 936 653 686.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-category">
+            <h2 th:text="#{titulo.politicas}">Políticas</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 th:text="#{pregunta.politica.cancelacion}">¿Tienen política de cancelación?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p th:text="#{respuesta.politica.cancelacion}">Las reservas se mantendrán durante 15 minutos después de la hora acordada. Luego podrán ser canceladas automáticamente.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 th:text="#{pregunta.reclamaciones}">¿Cómo puedo hacer una reclamación?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p th:text="#{respuesta.reclamaciones}">Puedes presentar tu reclamo mediante:</p>
+                    <ul>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#reclamacionesModal" th:text="#{enlace.libro.reclamaciones}">Libro de Reclamaciones</a></li>
+                        <li th:text="#{redes.sociales}">Nuestras redes sociales: @comopapobre</li>
+                        <li th:text="#{telefono}">Teléfono: +51 936 653 686</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 th:text="#{pregunta.retiro.pedido}">¿Cuánto tiempo tengo para retirar mi pedido?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p th:text="#{respuesta.retiro.pedido}">Después de recibir la notificación de que tu pedido está listo, tienes 30 minutos para recogerlo. Luego de ese plazo, podría ser cancelado o descartado.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <div th:replace="~{components/footer :: footer}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/inicio.js}"></script>
+    <script th:src="@{/js/preguntasfrecuentes.js}"></script>
+    <script th:src="@{/js/carrito.js}"></script>
+    <script th:src="@{/js/inactividad.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

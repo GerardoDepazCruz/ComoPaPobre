@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Como Pa Pobre - Contacto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" th:href="@{/css/inicio.css}">
+    <link rel="stylesheet" th:href="@{/css/contacto.css}">
+    <link rel="icon" th:href="@{/img/logoComoPaPobre.ico}" type="image/x-icon">
+
+</head>
+<body>
+    <nav th:replace="components/navbar :: nav-bar"></nav>
+
+    <div style="position: relative; text-align: center; margin-top: 0px;"> 
+        <img th:src="@{/img/inicio.jpeg}" alt="Producto" class="hero-image1"> 
+        <div class="overlay1"></div> 
+        </div>
+    </div>
+
+     <!-- Sección Contacto ComoPaPobre -->
+     <section class="seccion-contacto" id="contacto">
+        <h2 th:text="#{contacto.titulo}">CONTACTO</h2>
+        <div class="contenido-contacto">
+            <div class="descripcion">
+                <h4 th:text="#{descripcion.contacto}">Somos ComoPaPobre, restaurante de comida rápida</h4>
+                <p class="texto-destacado" th:text="#{descripcion.contacto2}">ComoPaPobre es un lugar acogedor donde puedes disfrutar cada momento como en casa, sin gastar de más. Con un ambiente relajado, comida sabrosa y precios accesibles, aquí siempre te sentirás bienvenido. Porque creemos que disfrutar no tiene que ser caro.</p>
+                <p class="nota-importante" th:text="#{contacto.redes}">También puedes contactarnos a través de nuestras redes sociales en tiktok e instagram como @comopapobre.</p>
+
+                    <div class="info-contacto">
+                        <ul class="lista-contacto">
+                            <li>
+                                <span th:text="#{contacto.whatsapp}">📱 WhatsApp:</span>
+                                <a href="https://api.whatsapp.com/send?phone=51936653686" target="_blank">+51 936 653 686</a>
+                            </li>
+                            <li>
+                                <span th:text="#{contacto.direccion}">📍 Dirección:</span>
+                                <a href="https://maps.app.goo.gl/XrJ9sxqKjq9F7DvD9" target="_blank" th:text="#{contacto.direccion_detalle}">Mz C6 lote 14, Ventanilla, Lima, Perú</a>
+                            </li>
+                        </ul>
+                                              
+                    </div>
+                    <div class="horario">
+                        <h4 th:text="#{horario.atencion}">Horario de atención</h4>
+                        <p>
+                            <span th:text="#{horario.dias}">Lunes a Sábado</span><br>
+                            <span th:text="#{horario.horas}">8:30 PM a 3 AM</span>
+                        </p>
+                    </div>  
+                </div>
+            </div>
+            
+            <div class="formulario-contacto">
+                <p class="texto-informativo" style="text-align: center; font-size: 16px; color: #333;" th:text="#{contacto.mensaje}"></p>
+
+                <form th:action="@{/formContacto}" method="post" class="formulario w-100" style="max-width: 600px;">
+                    <div class="grupo-form">
+                        <input type="text" id="nombre" name="nombre" th:value="${nombre}" required>
+                        <label for="nombre" th:text="#{formulario.contacto.nombre}">Nombre</label>
+                    </div>
+            
+                    <div class="grupo-form">
+                        <input type="email" id="email" name="email" th:value="${email}" required>
+                        <label for="email" th:text="#{formulario.contacto.email}">Correo electrónico</label>
+                    </div>
+            
+                    <div class="grupo-form">
+                        <textarea id="mensaje" name="mensaje" rows="4" required th:text="${mensaje}"></textarea>
+                        <label for="mensaje" th:text="#{formulario.contacto.mensaje}">Mensaje</label>
+                    </div>
+            
+                    <button type="submit" class="boton-enviar btn btn-primary mt-3" th:text="#{formulario.contacto.enviar}">Enviar Mensaje</button>
+                </form>
+            </div>
+            
+            
+            
+            <div class="servicios-destacados">
+                <div class="servicio">
+                    <img src="/img/servicioCliente.png" alt="Servicio al cliente">
+                    <h4 th:text="#{servicios.destacado.servicio_cliente}">Servicio al cliente</h4>
+                    <p th:text="#{servicios.destacado.servicio_cliente.descripcion}">Contáctanos y te ayudaremos en lo que necesites</p>
+                </div>
+                
+                <div class="servicio">
+                    <img src="/img/calidad.png" alt="Calidad">
+                    <h4 th:text="#{servicios.destacado.calidad}">Calidad</h4>
+                    <p th:text="#{servicios.destacado.calidad.descripcion}">Productos con materiales de la más alta calidad</p>
+                </div>
+                
+                <div class="servicio">
+                    <img src="/img/pagoSeguro.png" alt="Pago seguro">
+                    <h4 th:text="#{servicios.destacado.pago_seguro}">Pago seguro</h4>
+                    <p th:text="#{servicios.destacado.pago_seguro.descripcion}">Transacciones 100% seguras con diferentes métodos de pago</p>
+                </div>
+            </div>            
+        </section>
+
+        <!-- Footer -->
+   <div th:replace="~{components/footer :: footer}"></div>
+   
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/inicio.js}"></script>
+    <script th:src="@{/js/carrito.js}"></script>
+    <script th:src="@{/js/inactividad.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Iniciar Sesión | Como Pa Pobre</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="icon" th:href="@{/img/logoComoPaPobre.ico}" type="image/x-icon">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav th:replace="~{components/navbar :: nav-bar}"></nav>
+
+    <!-- Sección de login -->
+    <section class="login-section py-5" style="margin-top: 120px;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="card shadow-lg p-4 border-0 rounded-4 fire-border">
+                        <h3 class="text-center mb-4" style="font-family: 'Righteous', cursive; color: black;"
+                            th:text="#{login.titulo}">Iniciar Sesión</h3>
+                        <div th:if="${param.logout}">
+                            <div class="alert alert-success text-center">Has cerrado sesión correctamente.</div>
+                        </div>
+                        <div th:if="${param.session}">
+                            <div class="alert alert-warning text-center">Tu sesión ha expirado. Vuelve a iniciar sesión.</div>
+                        </div>
+                        <div th:if="${param.error}">
+                            <div class="alert alert-danger text-center">Usuario o contraseña incorrectos.</div>
+                        </div>
+
+                        <!-- Formulario -->
+                        <form method="post" th:action="@{/login}" id="formulario-login">
+                            <div class="mb-3">
+                                <label for="username" class="form-label" th:text="#{login.usuario}">Usuario</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="username"
+                                       name="username"
+                                       th:value="${param.username}"
+                                       th:placeholder="#{login.placeholder.usuario}"
+                                       required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label" th:text="#{login.contrasena}">Contraseña</label>
+                                <input type="password"
+                                       class="form-control"
+                                       id="password"
+                                       name="password"
+                                       th:placeholder="#{login.placeholder.contrasena}"
+                                       required>
+                            </div>
+                            <div class="d-grid mb-3">
+                                <button type="submit" class="btn btn-dark" th:text="#{login.boton}" id="btn-login">Ingresar</button>
+                            </div>
+                            <div class="text-center">
+                                <span th:text="#{login.noCuenta}">¿No tienes una cuenta?</span>
+                                <a href="/crearcuenta" class="text-decoration-none" th:text="#{login.crearCuenta}">Crear cuenta</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script th:src="@{/js/inicio.js}"></script>
+    <script th:src="@{/js/carrito.js}"></script>
+    <script th:src="@{/js/inactividad.js}"></script>
+
+    <!-- Script para bloqueo -->
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+    let estaBloqueado = /*[[${bloqueado}]]*/ false;
+
+    if (estaBloqueado) {
+        let tiempo = 10;
+        const boton = document.getElementById("btn-login");
+        const userInput = document.getElementById("username");
+        const passInput = document.getElementById("password");
+
+        boton.disabled = true;
+        userInput.disabled = true;
+        passInput.disabled = true;
+
+        Swal.fire({
+            icon: 'warning',
+            title: 'Demasiados intentos',
+            html: 'Has sido bloqueado temporalmente.<br>Podrás intentar de nuevo en <b><span id="contador">10</span></b> segundos.',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            didOpen: () => {
+                const intervalo = setInterval(() => {
+                    tiempo--;
+                    document.getElementById('contador').textContent = tiempo;
+                    if (tiempo <= 0) {
+                        clearInterval(intervalo);
+                        Swal.close();
+                        boton.disabled = false;
+                        userInput.disabled = false;
+                        passInput.disabled = false;
+                    }
+                }, 1000);
+            }
+        });
+    }
+    /*]]>*/
+</script>
+
+</body>
+</html>

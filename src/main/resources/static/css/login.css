@@ -1,0 +1,341 @@
+body {
+    background-color: #FFCA1A;
+}
+.navbar {
+    transition: background-color 0.3s;
+    background-color: #212529;
+}
+.navbar.scrolled {
+    background-color: #212529;
+}
+.navbar-brand {
+    display: flex; 
+    align-items: center; 
+    font-family: 'Righteous', cursive; 
+    font-size: 1.5rem;
+    color: #FFCA1A;
+}
+.navbar-brand img {
+    margin-right: 10px;
+}
+.offcanvas-title {
+    color: white;
+    
+}
+
+.offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.social-menu {
+    border-top: 1px solid #444;
+    padding: 1.5rem 0;
+    margin-top: auto;
+}
+.hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.hero-text h1 {
+    font-family: 'Pacifico', cursive; 
+    font-weight: 700;
+    font-size: 5rem;
+    color: black;
+}
+.hero-text p {
+    font-family: 'Montserrat', cursive; 
+    font-weight: 400;
+    font-size: 1.5rem;
+    height: 5px;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: background-color 0.5s ease;
+}
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    text-align: center;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+.carousel-indicators button {
+    background-color: #ccc;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+}
+.carousel-indicators .active {
+    background-color: #FFCA1A;
+}
+.carousel {
+    margin: 30px 160px;
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 40px;
+    display: flex;
+}
+.carousel-inner img {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+}
+.menu-section {
+    padding: 10px 0;
+    background-color: #f8eed0;
+}
+.menu {
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.menu:hover {
+    transform: scale(1.05);
+}
+.overlay1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+.inner_content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+.text-center1 {
+    text-align: center; 
+    font-family: 'Righteous', cursive; 
+    font-size: 2.3rem;
+}
+.video-section {
+    padding: 20px 0;
+    background-color: #f8eed0;
+}
+.video-container {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%;
+}
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.text-content {
+    padding: 20px;
+    color: #333;
+}
+.location-section {
+    padding: 30px 0;
+    background-color: #f8eed0;
+}
+.map-container {
+    text-align: center;
+}
+.footer-section {
+    background-color: #212529;
+    color: #FFCA1A;
+    padding: 50px 0;
+}
+.footer-section h5 {
+    margin-bottom: 20px;
+}
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+.footer-section ul li a {
+    color: white;
+}
+.footer-section a {
+    color: white;
+    text-decoration: none;
+}
+.footer-section a:hover {
+    text-decoration: underline;
+}
+.social-links {
+    padding: 0;
+}
+.social-links li {
+    display: inline;
+    margin-right: 10px;
+}
+.payment-methods img {
+    margin-right: 10px;
+}
+.video-container {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%;
+}
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.text-content2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+}
+.text-content2 h3 {
+    font-family: 'Righteous', cursive;
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: #FFCA1A;
+}
+.text-content2 p {
+    font-family: 'Montserrat', cursive; 
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+.form-check-input {
+    display: none;
+}
+.form-check-input:checked + .form-check-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #FFCA1A;
+    border-radius: 50%;
+    background-color: #FFCA1A;
+    margin-right: 10px;
+}
+.form-check-input + .form-check-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #808080;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.modal-title {
+    text-align: center;
+    color: #FFCA1A;
+    font-weight: bold;
+}
+.modal-body h3 {
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.modal-body p:first-of-type {
+    color: #808080;
+}
+.modal-body p:nth-of-type(2) {
+    color: #808080;
+}
+.modal-body label {
+    color: white;
+}
+.form-select {
+    background-color: #63717E;
+    color: white;
+    border: 1px solid black;
+}
+.form-select:focus {
+    background-color: #63717E;
+    color: white;
+    border: 1px solid black;
+}
+.form-control {
+    background-color: #63717E;
+    color: white;
+    border: 1px solid black;
+}
+.btn-primary {
+    background-color: #FFCA1A;
+    color: black;
+    font-weight: bold;
+    border: 1px solid black;
+}
+.btn-primary:hover {
+    background-color: #846D22;
+    color: black;
+    border: 1px solid black;
+}
+.btn-primary:active, .btn-primary:focus {
+    background-color: #846D22;
+    color: black;
+    box-shadow: none;
+    border: 1px solid black;
+}
+.modal-content {
+    background-color: #212529;
+    border: 5px solid black;
+} 
+
+.textoNbre {
+    color: #ffffff;
+}
+
+
+
+
+/* login */
+
+.login-section {
+    background-color: #FFCA1A;
+    margin-top: 50px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 15px;
+    min-height: 600px;        /* ✅ Hace la tarjeta más alta */
+    padding: 2rem 1.5rem;     /* ✅ Agrega espacio interno vertical y horizontal */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+}
+
+.btn-dark {
+    background-color: #212529;
+    border: none;
+}
+
+.btn-dark:hover {
+    background-color: #343a40;
+}

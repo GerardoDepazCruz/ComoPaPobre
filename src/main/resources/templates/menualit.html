@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Alitas | Como Pa Pobre</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/inicio.css}">
+    <link rel="icon" th:href="@{/img/logoComoPaPobre.ico}" type="image/x-icon">
+    <!-- Inyección de la variable global isAuthenticated -->
+    <script th:inline="javascript">
+        var isAuthenticated = /*[[${#authorization.expression('isAuthenticated()')}]]*/ false;
+        console.log("isAuthenticated:", isAuthenticated);
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav th:replace="~{components/navbar :: nav-bar}"></nav>
+
+    <div class="container">
+        <section class="prod-section">
+            <h2 class="text-center prod-title" th:text="#{titulo.menualit}">MENÚ DE ALITAS</h2>
+            <div class="row g-4">
+
+                <!-- ALITAS BBQ -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="prod-card h-100">
+                        <div class="prod-img-container">
+                            <img th:src="@{/img/alita1.jpg}" class="alita-img" alt="Alitas BBQ">
+                        </div>
+                        <div class="prod-body">
+                            <h3 th:text="#{titulo.alitas.bbq}">Alitas BBQ</h3>
+                            <label for="bbq-select" th:text="#{selecciona.cantidad}">Selecciona la cantidad:</label>
+                            <select id="bbq-select" class="form-select alitas-select" data-prices="18,23,35">
+                                <option value="0" selected disabled th:text="#{elige.opcion}">Elige una opción</option>
+                                <option value="18" th:text="#{combo.bbq.4}">4 piezas + papas + cremas → S/ 18.00</option>
+                                <option value="23" th:text="#{combo.bbq.6}">6 piezas + papas + cremas → S/ 23.00</option>
+                                <option value="35" th:text="#{combo.bbq.10}">10 piezas + papas + cremas → S/ 35.00</option>
+                            </select>
+                            <div class="prod-price">
+                                <span class="selected-price">S/ --</span>
+                            </div>
+                            <button class="btn btn-prod" th:text="#{pedir.ahora}">Pedir ahora</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ALITAS CRISPY -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="prod-card h-100">
+                        <div class="prod-img-container">
+                            <img th:src="@{/img/alita2.jpg}" class="alita-img" alt="Alitas Crispy">
+                        </div>
+                        <div class="prod-body">
+                            <h3 th:text="#{titulo.alitas.crispy}">Alitas Crispy</h3>
+                            <label for="crispy-select" th:text="#{selecciona.cantidad}">Selecciona la cantidad:</label>
+                            <select id="crispy-select" class="form-select alitas-select" data-prices="20,25,40">
+                                <option value="0" selected disabled th:text="#{elige.opcion}">Elige una opción</option>
+                                <option value="20" th:text="#{combo.crispy.4}">4 piezas + papas + cremas → S/ 20.00</option>
+                                <option value="25" th:text="#{combo.crispy.6}">6 piezas + papas + cremas → S/ 25.00</option>
+                                <option value="40" th:text="#{combo.crispy.10}">10 piezas + papas + cremas → S/ 40.00</option>
+                            </select>
+                            <div class="prod-price">
+                                <span class="selected-price">S/ --</span>
+                            </div>
+                            <button class="btn btn-prod" th:text="#{pedir.ahora}">Pedir ahora</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ALITAS ACEVICHADAS -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="prod-card h-100">
+                        <div class="prod-img-container">
+                            <img th:src="@{/img/alita3.jpg}" class="alita-img" alt="Alitas Acevichadas">
+                        </div>
+                        <div class="prod-body">
+                            <h3 th:text="#{titulo.alitas.acevichadas}">Alitas Acevichadas</h3>
+                            <label for="acevichadas-select" th:text="#{selecciona.cantidad}">Selecciona la cantidad:</label>
+                            <select id="acevichadas-select" class="form-select alitas-select" data-prices="22,27,42">
+                                <option value="0" selected disabled th:text="#{elige.opcion}">Elige una opción</option>
+                                <option value="22" th:text="#{combo.acev.4}">4 piezas + papas + cremas → S/ 22.00</option>
+                                <option value="27" th:text="#{combo.acev.6}">6 piezas + papas + cremas → S/ 27.00</option>
+                                <option value="42" th:text="#{combo.acev.10}">10 piezas + papas + cremas → S/ 42.00</option>
+                            </select>
+                            <div class="prod-price">
+                                <span class="selected-price">S/ --</span>
+                            </div>
+                            <button class="btn btn-prod" th:text="#{pedir.ahora}">Pedir ahora</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div th:replace="~{components/footer :: footer}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/inicio.js}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const selects = document.querySelectorAll(".alitas-select");
+            selects.forEach(select => {
+                select.addEventListener("change", (event) => {
+                    const selectedOption = event.target.value;
+                    const priceContainer = event.target.closest(".prod-body").querySelector(".selected-price");
+                    priceContainer.textContent = `S/ ${selectedOption}`;
+                });
+            });
+        });
+    </script>
+    <script th:src="@{/js/carrito.js}"></script>
+    <script th:src="@{/js/inactividad.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+</body>
+</html>

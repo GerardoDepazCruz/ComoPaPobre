@@ -1,0 +1,268 @@
+.hero-image1 {
+  width: 100%; 
+  height: 27vh; 
+  display: block;
+  object-fit: cover; 
+}
+
+.overlay1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.seccion-nosotros {
+    background-color: #f8eed0;
+    padding: 4rem 0;
+}
+
+.seccion-nosotros h2 {
+    text-align: center;
+    font-family: 'Righteous', cursive;
+    color: #212529;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    position: relative;
+}
+
+.seccion-nosotros h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #FFCA1A;
+    margin: 15px auto;
+}
+
+.contenido-nosotros {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.historia {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+}
+
+.texto-historia h3 {
+    font-family: 'Righteous', cursive;
+    color: #212529;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 20px;
+}
+
+.texto-historia h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    width: 5px;
+    background: #FFCA1A;
+}
+
+.texto-destacado {
+    font-family: 'Montserrat', sans-serif;
+    color: #6c757d;
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+}
+
+.texto-destacado br {
+    display: block;
+    margin-bottom: 1.9rem;
+    content: "";
+}
+
+.img-historia {
+    flex: 0 1 auto; 
+    min-width: 200px;
+    max-width: 900px; 
+    width: 900px; 
+    height: 450px; 
+    border-radius: 15px;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+    border: 8px solid #212529;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    object-fit: cover; 
+}
+
+
+
+.img-historia:hover {
+    transform: scale(1.02);
+}
+
+.mision-vision {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 4rem 0;
+}
+
+.card-mision, .card-vision {
+    flex: 1;
+    min-width: 280px;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card-mision i, .card-vision i {
+    font-size: 2.5rem;
+    color: #FFCA1A;
+    margin-bottom: 1rem;
+}
+
+.card-mision h4, .card-vision h4 {
+    font-family: 'Righteous', cursive;
+    color: #212529;
+    margin-bottom: 1rem;
+}
+
+.card-mision p, .card-vision p {
+    font-family: 'Montserrat', sans-serif;
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+.valores h3 {
+    text-align: center;
+    font-family: 'Righteous', cursive;
+    color: #212529;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.lista-valores {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.valor-item {
+    flex: 1;
+    min-width: 250px;
+    max-width: 300px;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.valor-item:hover {
+    transform: translateY(-5px);
+}
+
+.valor-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+.valor-item h5 {
+    font-family: 'Righteous', cursive;
+    color: #212529;
+    margin-bottom: 0.5rem;
+}
+
+.valor-item p {
+    font-family: 'Montserrat', sans-serif;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.logros-destacados {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 800px;
+    margin: 4rem auto 0;
+    padding: 2rem;
+    background: rgba(255,255,255,0.9);
+    border-radius: 15px;
+}
+
+.logro {
+    text-align: center;
+    padding: 1.5rem;
+    position: relative;
+}
+
+.logro:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50px;
+    width: 2px;
+    background: #FFCA1A;
+}
+
+.logro h4 {
+    font-family: 'Righteous', cursive;
+    color: #FFCA1A;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.logro p {
+    font-family: 'Montserrat', sans-serif;
+    color: #6c757d;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+    .seccion-nosotros h2 { font-size: 2.2rem; }
+    .historia { gap: 2rem; margin-bottom: 3rem; }
+    .texto-historia h3 { font-size: 1.8rem; }
+    .img-historia { max-width: 600px; }
+    .card-mision, .card-vision { padding: 1.5rem; }
+    .logros-destacados { max-width: 90%; }
+}
+
+@media (max-width: 768px) {
+    .hero-image1 { height: 22vh; }
+    .seccion-nosotros { padding: 3rem 0; }
+    .seccion-nosotros h2 { font-size: 2rem; }
+    .historia { flex-direction: column; padding: 0 20px; }
+    .texto-historia h3 { font-size: 1.7rem; text-align: left; }
+    .img-historia { 
+        width: 90%;
+        border-width: 6px;
+    }
+    .logros-destacados { grid-template-columns: 1fr; gap: 1.5rem; }
+    .logro:not(:last-child)::after { display: none; }
+}
+
+@media (max-width: 480px) {
+    .hero-image1 { height: 18vh; }
+    .seccion-nosotros h2 { font-size: 1.8rem; }
+    .texto-historia h3 { font-size: 1.6rem; }
+    .img-historia { 
+        width: 100%;
+        border-width: 4px;
+    }
+    .logro h4 { font-size: 2rem; }
+    .logro p { font-size: 0.9rem; }
+}
