@@ -73,6 +73,10 @@ public class InicioController {
     public String mostrarpreguntasfrecuentes() {
         return "preguntasfrecuentes"; 
     }
+    @GetMapping("/personalizar")
+    public String personalizarHamburguesa() {
+        return "personalizar";
+}
 
 
     

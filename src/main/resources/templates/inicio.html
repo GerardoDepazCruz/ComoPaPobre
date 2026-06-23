@@ -27,13 +27,20 @@
         <div class="hero-text">
             <h1 th:text="#{titulo.bienvenidos}">-- BIENVENIDOS --</h1>
             <p th:text="#{inicio.frase}">¡Para todo los madrugadores!</p>
+        
         </div>
+        
     </div>
-
+    
 
     <!-- Sección Menú -->
    <section class="menu-section">
     <div class="container">
+        <div class="text-center mb-4">
+    <a th:href="@{/personalizar}" class="btn btn-warning btn-lg px-4 py-3 shadow rounded-pill fw-bold">
+        🍔 Personaliza tu hamburguesa
+    </a>
+</div>
         <h2 class="text-center1" th:text="#{menu.titulo}">Nuestro Menú</h2>
         <br>
         <div class="row forth_sec">
@@ -44,7 +51,9 @@
                         <a th:href="@{/menuhambur}" th:text="#{menu.hamburguesas}">Hamburguesas</a>
                     </div>
                 </div>
+                
             </div>
+            
             <div class="col">
                 <div class="menu" th:style="'background-image: url(' + @{/img/Alitas.png} + ');'">
                     <div class="overlay1"></div>
