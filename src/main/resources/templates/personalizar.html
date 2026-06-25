@@ -1,492 +1,578 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Burger Builder Pro</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <meta charset="UTF-8">
+    <title>Personaliza tu hamburguesa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #e0f2fe, #fef9c3);
+            color: #111827;
+            min-height: 100vh;
+        }
+        h2 { font-weight: 900; letter-spacing: -0.5px; font-size: 34px; color: #0f172a; }
+        .app { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; }
+        .panel {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 26px;
+            border: 2px solid #cbd5e1;
+        }
+        .tabs {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 20px;
+            background: #e2e8f0;
+            border-radius: 14px;
+            padding: 6px;
+        }
+        .tab {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 700;
+            color: #334155;
+            transition: .15s;
+            border: none;
+            background: transparent;
+        }
+        .tab:hover { color: #0f172a; background: #ffffff; }
+        .tab.active {
+            background: #ffffff;
+            color: #0f172a;
+            font-weight: 800;
+            border: 2px solid #93c5fd;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .section { display: none; }
+        .section.active { display: block; }
+        .card-box {
+            background: #f1f5f9;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 12px;
+            border: 2px solid #cbd5e1;
+        }
+        .card-label {
+            font-size: 14px;
+            font-weight: 800;
+            color: #475569;
+            margin-bottom: 10px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: .8px;
+        }
+        .form-select {
+            border-radius: 10px;
+            font-size: 16px;
+            border: 2px solid #cbd5e1;
+            background: #ffffff;
+            color: #0f172a;
+            padding: 10px 12px;
+            font-weight: 600;
+        }
+        .counter {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 4px;
+        }
+        .counter-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid #cbd5e1;
+            background: #ffffff;
+            color: #0f172a;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .counter-val {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0f172a;
+            min-width: 30px;
+            text-align: center;
+        }
+        .check-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+            cursor: pointer;
+        }
+        .check-row input[type=checkbox] {
+            width: 18px;
+            height: 18px;
+            accent-color: #f59e0b;
+        }
+        .check-label {
+            font-size: 16px;
+            color: #0f172a;
+            flex: 1;
+            font-weight: 600;
+        }
+        .check-badge {
+            font-size: 13px;
+            color: #1f2937;
+            background: #fff7ed;
+            border: 1px solid #fdba74;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+        .summary-box {
+            background: #f1f5f9;
+            border-radius: 14px;
+            padding: 18px;
+            border: 2px solid #cbd5e1;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 15px;
+            color: #334155;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .summary-row span:last-child {
+            color: #0f172a;
+            font-weight: 700;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 16px 0;
+        }
+        .price-label {
+            font-size: 16px;
+            font-weight: 700;
+            color: #334155;
+        }
+        .price-val {
+            font-size: 32px;
+            font-weight: 900;
+            color: #16a34a;
+        }
+        .btn-add {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            background: #f59e0b;
+            color: #1c1002;
+            font-size: 16px;
+            font-weight: 800;
+        }
+        .btn-add:hover { background: #d97706; }
+        .btn-clear {
+            background: #e2e8f0;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 700;
+            color: #334155;
+        }
+        .btn-clear:hover { background: #cbd5e1; }
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #e0f2fe, #fef9c3);
-    color: #111827;
-    min-height: 100vh;
-  }
+        .preview-panel {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 26px;
+            border: 2px solid #cbd5e1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .preview-title { font-size: 18px; font-weight: 800; color: #0f172a; }
+        .preview-sub { font-size: 14px; color: #475569; margin-bottom: 16px; }
 
-  h2 {
-    font-weight: 900;
-    letter-spacing: -0.5px;
-    font-size: 34px;
-    color: #0f172a;
-  }
+        .burger-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fdf6e3;
+            border-radius: 30px;
+            padding: 20px 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 300px;
+            min-height: 200px;
+            justify-content: flex-start;
+        }
 
-  /* APP LAYOUT */
-  .app {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 20px;
-  }
+        .burger {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            width: 100%;
+            gap: 0;
+            margin: 0;
+        }
 
-  /* PANEL */
-  .panel {
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 26px;
-    border: 2px solid #cbd5e1;
-  }
+        .layer-img {
+            width: 90%;
+            max-width: 250px;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0;
+            padding: 0;
+            margin-bottom: -4px;
+        }
 
-  /* TABS */
-  .tabs {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 20px;
-    background: #e2e8f0;
-    border-radius: 14px;
-    padding: 6px;
-  }
+        .layer-img:last-child {
+            margin-bottom: 0;
+        }
 
-  .tab {
-    flex: 1;
-    padding: 12px;
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 700;
-    color: #334155;
-    transition: .15s;
-    border: none;
-    background: transparent;
-  }
-
-  .tab:hover {
-    color: #0f172a;
-    background: #ffffff;
-  }
-
-  .tab.active {
-    background: #ffffff;
-    color: #0f172a;
-    font-weight: 800;
-    border: 2px solid #93c5fd;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  }
-
-  /* CARDS */
-  .card-box {
-    background: #f1f5f9;
-    border-radius: 14px;
-    padding: 18px;
-    margin-bottom: 12px;
-    border: 2px solid #cbd5e1;
-  }
-
-  .card-label {
-    font-size: 14px;
-    font-weight: 800;
-    color: #475569;
-    margin-bottom: 10px;
-    display: block;
-    text-transform: uppercase;
-    letter-spacing: .8px;
-  }
-
-  /* SELECT */
-  .form-select {
-    border-radius: 10px;
-    font-size: 16px;
-    border: 2px solid #cbd5e1;
-    background: #ffffff;
-    color: #0f172a;
-    padding: 10px 12px;
-    font-weight: 600;
-  }
-
-  /* COUNTER */
-  .counter {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-top: 4px;
-  }
-
-  .counter-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: 2px solid #cbd5e1;
-    background: #ffffff;
-    color: #0f172a;
-    font-size: 20px;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .counter-val {
-    font-size: 22px;
-    font-weight: 800;
-    color: #0f172a;
-    min-width: 30px;
-    text-align: center;
-  }
-
-  /* CHECKBOXES */
-  .check-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 0;
-    border-bottom: 1px solid #e2e8f0;
-    cursor: pointer;
-  }
-
-  .check-row input[type=checkbox] {
-    width: 18px;
-    height: 18px;
-    accent-color: #f59e0b;
-  }
-
-  .check-label {
-    font-size: 16px;
-    color: #0f172a;
-    flex: 1;
-    font-weight: 600;
-  }
-
-  .check-badge {
-    font-size: 13px;
-    color: #1f2937;
-    background: #fff7ed;
-    border: 1px solid #fdba74;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-weight: 700;
-  }
-
-  /* SUMMARY */
-  .summary-box {
-    background: #f1f5f9;
-    border-radius: 14px;
-    padding: 18px;
-    border: 2px solid #cbd5e1;
-  }
-
-  .summary-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 15px;
-    color: #334155;
-    padding: 8px 0;
-    border-bottom: 1px solid #e2e8f0;
-  }
-
-  .summary-row span:last-child {
-    color: #0f172a;
-    font-weight: 700;
-  }
-
-  .price-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 16px 0;
-  }
-
-  .price-label {
-    font-size: 16px;
-    font-weight: 700;
-    color: #334155;
-  }
-
-  .price-val {
-    font-size: 32px;
-    font-weight: 900;
-    color: #16a34a;
-  }
-
-  .btn-add {
-    width: 100%;
-    padding: 14px;
-    border-radius: 12px;
-    border: none;
-    background: #f59e0b;
-    color: #1c1002;
-    font-size: 16px;
-    font-weight: 800;
-  }
-
-  .btn-add:hover { background: #d97706; }
-
-  /* PREVIEW */
-  .preview-panel {
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 26px;
-    border: 2px solid #cbd5e1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .preview-title {
-    font-size: 18px;
-    font-weight: 800;
-    color: #0f172a;
-  }
-
-  .preview-sub {
-    font-size: 14px;
-    color: #475569;
-    margin-bottom: 16px;
-  }
-
-  /* BURGER */
-  .burger-wrap { perspective: 900px; }
-
-  .burger {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    transform: rotateX(8deg);
-  }
-
-  .layer { width: 260px; border-radius: 22px; }
-
-  .bun-top {
-    height: 78px;
-    background: linear-gradient(#ffb703, #fb8500);
-    border-radius: 140px 140px 40px 40px;
-  }
-
-  .bun-bottom {
-    height: 60px;
-    background: linear-gradient(#fb8500, #c05621);
-    border-radius: 40px 40px 140px 140px;
-  }
-
-  .meat { height: 22px; background: #4b2e2a; }
-  .cheese { height: 12px; background: #ffd60a; }
-  .tomato { height: 12px; background: #ff2e2e; }
-  .lettuce { height: 12px; background: #16a34a; }
-  .bacon { height: 12px; background: #92400e; }
-
-  /* MINI SUMMARY */
-  .mini-summary {
-    margin-top: 18px;
-    width: 100%;
-    background: #f1f5f9;
-    border-radius: 14px;
-    padding: 14px;
-    border: 2px solid #cbd5e1;
-  }
-
-  .mini-row {
-    font-size: 14px;
-    color: #334155;
-    padding: 4px 0;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .mini-price {
-    font-size: 24px;
-    font-weight: 900;
-    color: #16a34a;
-    margin-top: 10px;
-  }
-</style>
+        .mini-summary {
+            margin-top: 18px;
+            width: 100%;
+            background: #f1f5f9;
+            border-radius: 14px;
+            padding: 14px;
+            border: 2px solid #cbd5e1;
+        }
+        .mini-row {
+            font-size: 14px;
+            color: #334155;
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .mini-price {
+            font-size: 24px;
+            font-weight: 900;
+            color: #16a34a;
+            margin-top: 10px;
+        }
+    </style>
 </head>
-
 <body>
 
 <div class="container mt-5 pb-5">
 
-  <h2 class="text-center mb-4">🍔 Personaliza tu hamburguesa</h2>
-
-  <div class="app">
-
-    <div class="panel">
-
-      <div class="tabs">
-        <button class="tab active" onclick="openTab('base', this)">Base</button>
-      </div>
-
-      <div id="base" class="section active">
-        <div class="card-box">
-          <span class="card-label">Tipo de pan</span>
-          <select class="form-select" onchange="updateBurger()">
-            <option>Clásico</option>
-            <option>Brioche</option>
-            <option>Integral</option>
-          </select>
-        </div>
-
-        <div class="card-box">
-          <span class="card-label">Tipo de carne</span>
-          <select class="form-select" onchange="updateBurger()">
-            <option>Res</option>
-            <option>Pollo</option>
-          </select>
-        </div>
-
-        <div class="card-box">
-          <span class="card-label">Cantidad de carne</span>
-          <div class="counter">
-            <button class="counter-btn" onclick="meat(-1)">−</button>
-            <span class="counter-val" id="meatQty">1</span>
-            <button class="counter-btn" onclick="meat(1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div id="extras" class="section">
-        <div class="card-box">
-          <span class="card-label">Personaliza tu hamburguesa</span>
-
-          <label class="check-row">
-            <input type="checkbox" value="cheese" onchange="updateBurger()">
-            <span class="check-label">Queso extra</span>
-            <span class="check-badge">+S/ 2</span>
-          </label>
-
-          <label class="check-row">
-            <input type="checkbox" value="tomato" onchange="updateBurger()">
-            <span class="check-label">Tomate fresco</span>
-            <span class="check-badge">+S/ 2</span>
-          </label>
-
-          <label class="check-row">
-            <input type="checkbox" value="lettuce" onchange="updateBurger()">
-            <span class="check-label">Lechuga crocante</span>
-            <span class="check-badge">+S/ 2</span>
-          </label>
-
-          <label class="check-row">
-            <input type="checkbox" value="bacon" onchange="updateBurger()">
-            <span class="check-label">Tocino ahumado</span>
-            <span class="check-badge">+S/ 2</span>
-          </label>
-
-        </div>
-      </div>
-
-      <div id="resumen" class="section">
-        <div class="summary-box">
-          <div id="summaryRows"></div>
-          <div class="price-row">
-            <span class="price-label">Total</span>
-            <span class="price-val" id="price">S/ 15</span>
-          </div>
-          <button class="btn-add" onclick="addCart()">🍔 Agregar al carrito</button>
-        </div>
-      </div>
-
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <a th:href="@{/}" class="btn btn-outline-secondary btn-lg">
+            <i class="ti ti-arrow-left"></i> Volver
+        </a>
+        <h2 class="text-center mb-0">🍔 Personaliza tu hamburguesa</h2>
+        <span style="width: 120px;"></span>
     </div>
 
-    <div class="preview-panel">
-      <p class="preview-title">Vista previa</p>
-      <p class="preview-sub">Tu hamburguesa se construye automáticamente</p>
+    <div class="app">
 
-      <div class="burger-wrap">
-        <div class="burger" id="burger"></div>
-      </div>
+        <div class="panel">
 
-      <div class="mini-summary" id="miniSummary"></div>
+            <div class="tabs">
+                <button class="tab active" data-tab="base">Base</button>
+                <button class="tab" data-tab="extras">Extras</button>
+                <button class="tab" data-tab="resumen">Resumen</button>
+            </div>
+
+            <div id="base" class="section active">
+                <div class="card-box">
+                    <span class="card-label">Tipo de pan</span>
+                    <select class="form-select" id="breadType" onchange="updateBurger()">
+                        <option value="clasico" data-price="2">Clásico</option>
+                        <option value="brioche" data-price="3">Brioche</option>
+                        <option value="integral" data-price="2.5">Integral</option>
+                    </select>
+                </div>
+
+                <div class="card-box">
+                    <span class="card-label">Tipo de carne</span>
+                    <select class="form-select" id="meatType" onchange="updateBurger()">
+                        <option value="res" data-price="5">Res</option>
+                        <option value="pollo" data-price="4">Pollo</option>
+                    </select>
+                </div>
+
+                <div class="card-box">
+                    <span class="card-label">Cantidad de carne (máx. 6)</span>
+                    <div class="counter">
+                        <button class="counter-btn" onclick="changeMeat(-1)">−</button>
+                        <span class="counter-val" id="meatQty">1</span>
+                        <button class="counter-btn" onclick="changeMeat(1)">+</button>
+                    </div>
+                </div>
+
+                <div class="text-end mt-2">
+                    <button class="btn-clear" onclick="resetAll()">🔄 Restablecer</button>
+                </div>
+            </div>
+
+            <div id="extras" class="section">
+                <div class="card-box">
+                    <span class="card-label">Agrega ingredientes extra (sobre la carne)</span>
+
+                    <label class="check-row">
+                        <input type="checkbox" value="cheese" onchange="updateBurger()">
+                        <span class="check-label">Queso extra</span>
+                        <span class="check-badge">+S/ 2</span>
+                    </label>
+
+                    <label class="check-row">
+                        <input type="checkbox" value="tomato" onchange="updateBurger()">
+                        <span class="check-label">Tomate fresco</span>
+                        <span class="check-badge">+S/ 2</span>
+                    </label>
+
+                    <label class="check-row">
+                        <input type="checkbox" value="lettuce" onchange="updateBurger()">
+                        <span class="check-label">Lechuga crocante</span>
+                        <span class="check-badge">+S/ 2</span>
+                    </label>
+
+                    <label class="check-row">
+                        <input type="checkbox" value="bacon" onchange="updateBurger()">
+                        <span class="check-label">Tocino ahumado</span>
+                        <span class="check-badge">+S/ 2</span>
+                    </label>
+
+                </div>
+            </div>
+
+            <div id="resumen" class="section">
+                <div class="summary-box">
+                    <div id="summaryRows"></div>
+                    <div class="price-row">
+                        <span class="price-label">Total</span>
+                        <span class="price-val" id="price">S/ 0</span>
+                    </div>
+                    <button class="btn-add" onclick="addCart()">🍔 Agregar al carrito</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="preview-panel">
+            <p class="preview-title">Vista previa</p>
+            <p class="preview-sub">¡Tu hamburguesa crece hacia arriba!</p>
+
+            <div class="burger-wrap">
+                <div class="burger" id="burger">
+                    <!-- Las imágenes se inyectan aquí -->
+                </div>
+            </div>
+
+            <div class="mini-summary" id="miniSummary"></div>
+        </div>
+
     </div>
-
-  </div>
 
 </div>
 
 <script>
-  let meatQty = 1;
+    let meatQty = 1;
+    const breadSelect = document.getElementById('breadType');
+    const meatSelect = document.getElementById('meatType');
+    const meatQtySpan = document.getElementById('meatQty');
+    const priceSpan = document.getElementById('price');
+    const summaryRows = document.getElementById('summaryRows');
+    const miniSummary = document.getElementById('miniSummary');
+    const burgerDiv = document.getElementById('burger');
 
-  function openTab(tab, el) {
-    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
-    document.getElementById(tab).classList.add("active");
-    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-    el.classList.add("active");
-  }
-
-  function meat(val) {
-    meatQty += val;
-    if (meatQty < 1) meatQty = 1;
-    document.getElementById("meatQty").innerText = meatQty;
-    updateBurger();
-  }
-
-  function updateBurger() {
-    const burger = document.getElementById("burger");
-    burger.innerHTML = "";
-
-    const extras = Array.from(document.querySelectorAll("input[type=checkbox]:checked"))
-      .map(e => e.value);
-
-    burger.innerHTML += `<div class="layer bun-top"></div>`;
-    if (extras.includes("bacon")) burger.innerHTML += `<div class="layer bacon"></div>`;
-    if (extras.includes("lettuce")) burger.innerHTML += `<div class="layer lettuce"></div>`;
-    if (extras.includes("tomato")) burger.innerHTML += `<div class="layer tomato"></div>`;
-    if (extras.includes("cheese")) burger.innerHTML += `<div class="layer cheese"></div>`;
-    for (let i = 0; i < meatQty; i++) burger.innerHTML += `<div class="layer meat"></div>`;
-    burger.innerHTML += `<div class="layer bun-bottom"></div>`;
-
-    const price = 12 + (extras.length * 2) + (meatQty * 3);
-    document.getElementById("price").innerText = "S/ " + price;
-
-    const extraNames = {
-      cheese: "Queso extra",
-      tomato: "Tomate fresco",
-      lettuce: "Lechuga crocante",
-      bacon: "Tocino ahumado"
+    const breadImages = {
+        clasico: {
+            top: '/img/perso/panclassuper.png',
+            bottom: '/img/perso/panclasinfer.png'
+        },
+        brioche: {
+            top: '/img/perso/panbriogesuper.png',
+            bottom: '/img/perso/panbriogeinfer.png'
+        },
+        integral: {
+            top: '/img/perso/panintegrasuper.png',
+            bottom: '/img/perso/panintegrainfer.png'
+        }
     };
 
-    let rows = `<div class="summary-row"><span>Carne(s)</span><span>${meatQty}x — S/ ${meatQty * 3}</span></div>`;
-    extras.forEach(e => {
-      rows += `<div class="summary-row"><span>${extraNames[e]}</span><span>S/ 2</span></div>`;
-    });
-    document.getElementById("summaryRows").innerHTML = rows;
+    const IMG_MEAT_BEEF = '/img/perso/hamburcarne.png';
+    const IMG_MEAT_CHICKEN = '/img/perso/hamburpollo.png';
+    const IMG_CHEESE = '/img/perso/queso.png';
+    const IMG_TOMATO = '/img/perso/tomate.png';
+    const IMG_LETTUCE = '/img/perso/lechuga.png';
+    const IMG_BACON = '/img/perso/tocino.png';
 
-    let mini = `<div class="mini-row">🔥 ${meatQty} carne(s)</div>`;
-    if (extras.length) {
-      mini += `<div class="mini-row">✨ ${extras.map(e => extraNames[e]).join(", ")}</div>`;
+    function changeMeat(delta) {
+        const newQty = meatQty + delta;
+        if (newQty < 1 || newQty > 6) return;
+        meatQty = newQty;
+        meatQtySpan.textContent = meatQty;
+        updateBurger();
     }
-    mini += `<div class="mini-price">S/ ${price}</div>`;
-    document.getElementById("miniSummary").innerHTML = mini;
-  }
 
-  function addCart() {
-    const extras = Array.from(document.querySelectorAll("input[type=checkbox]:checked"))
-      .map(e => e.value);
-    const price = 12 + (extras.length * 2) + (meatQty * 3);
+    function resetAll() {
+        breadSelect.value = 'clasico';
+        meatSelect.value = 'res';
+        meatQty = 1;
+        meatQtySpan.textContent = '1';
+        document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+        updateBurger();
+    }
 
-    const product = {
-      id: Date.now(),
-      name: `Burger (${meatQty} carnes)`,
-      price: price,
-      quantity: 1
-    };
+    function getBreadPrice() {
+        const opt = breadSelect.options[breadSelect.selectedIndex];
+        return parseFloat(opt.dataset.price) || 0;
+    }
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const exist = cart.find(p => p.name === product.name);
-    if (exist) exist.quantity++;
-    else cart.push(product);
+    function getMeatPrice() {
+        const opt = meatSelect.options[meatSelect.selectedIndex];
+        return parseFloat(opt.dataset.price) || 0;
+    }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    alert("✔ Agregado al carrito");
-    window.location.href = "/";
-  }
+    function getBreadName() {
+        return breadSelect.options[breadSelect.selectedIndex].text;
+    }
 
-  updateBurger();
+    function getMeatName() {
+        return meatSelect.options[meatSelect.selectedIndex].text;
+    }
+
+    function updateBurger() {
+        const breadType = breadSelect.value;
+        const meatType = meatSelect.value;
+        const extras = Array.from(document.querySelectorAll('input[type=checkbox]:checked')).map(e => e.value);
+        const meatImg = meatType === 'res' ? IMG_MEAT_BEEF : IMG_MEAT_CHICKEN;
+        const breadTop = breadImages[breadType].top;
+        const breadBottom = breadImages[breadType].bottom;
+
+        burgerDiv.innerHTML = '';
+
+        function createLayer(src, alt) {
+            const img = document.createElement('img');
+            img.src = src;
+            img.className = 'layer-img';
+            img.alt = alt;
+            return img;
+        }
+
+        const layers = [];
+        layers.push(createLayer(breadBottom, 'Pan inferior'));
+        for (let i = 0; i < meatQty; i++) {
+            layers.push(createLayer(meatImg, `Carne ${i+1}`));
+        }
+        const extraMap = {
+            cheese: { img: IMG_CHEESE, name: 'Queso' },
+            tomato: { img: IMG_TOMATO, name: 'Tomate' },
+            lettuce: { img: IMG_LETTUCE, name: 'Lechuga' },
+            bacon: { img: IMG_BACON, name: 'Tocino' }
+        };
+        extras.forEach(extra => {
+            if (extraMap[extra]) {
+                layers.push(createLayer(extraMap[extra].img, extraMap[extra].name));
+            }
+        });
+        layers.push(createLayer(breadTop, 'Pan superior'));
+
+        layers.forEach(layer => burgerDiv.appendChild(layer));
+
+        const breadPrice = getBreadPrice();
+        const meatPrice = getMeatPrice();
+        const meatTotal = meatPrice * meatQty;
+        const extrasPrice = extras.length * 2;
+        const total = breadPrice + meatTotal + extrasPrice;
+
+        const breadName = getBreadName();
+        const meatName = getMeatName();
+
+        let rows = `
+            <div class="summary-row"><span>Pan</span><span>${breadName} — S/ ${breadPrice.toFixed(2)}</span></div>
+            <div class="summary-row"><span>Carne (${meatName})</span><span>${meatQty}x — S/ ${meatTotal.toFixed(2)}</span></div>
+        `;
+        const extraNames = {
+            cheese: 'Queso extra',
+            tomato: 'Tomate fresco',
+            lettuce: 'Lechuga crocante',
+            bacon: 'Tocino ahumado'
+        };
+        extras.forEach(e => {
+            rows += `<div class="summary-row"><span>${extraNames[e]}</span><span>S/ 2.00</span></div>`;
+        });
+        summaryRows.innerHTML = rows;
+        priceSpan.textContent = `S/ ${total.toFixed(2)}`;
+
+        let mini = `<div class="mini-row">🍞 ${breadName}</div>`;
+        mini += `<div class="mini-row">🥩 ${meatName} x${meatQty}</div>`;
+        if (extras.length) {
+            mini += `<div class="mini-row">✨ ${extras.map(e => extraNames[e]).join(', ')}</div>`;
+        }
+        mini += `<div class="mini-price">S/ ${total.toFixed(2)}</div>`;
+        miniSummary.innerHTML = mini;
+    }
+
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            const sectionId = this.dataset.tab;
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        });
+    });
+
+    function addCart() {
+        const extras = Array.from(document.querySelectorAll('input[type=checkbox]:checked')).map(e => e.value);
+        const breadName = getBreadName();
+        const meatName = getMeatName();
+        const breadPrice = getBreadPrice();
+        const meatPrice = getMeatPrice();
+        const meatTotal = meatPrice * meatQty;
+        const extrasPrice = extras.length * 2;
+        const total = breadPrice + meatTotal + extrasPrice;
+
+        const product = {
+            id: Date.now(),
+            name: `🍔 ${breadName} + ${meatName} (${meatQty} carnes)`,
+            price: total,
+            quantity: 1,
+            details: {
+                pan: breadName,
+                carne: meatName,
+                cantidad: meatQty,
+                extras: extras.map(e => ({
+                    nombre: { cheese: 'Queso', tomato: 'Tomate', lettuce: 'Lechuga', bacon: 'Tocino' }[e],
+                    precio: 2
+                }))
+            }
+        };
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existIndex = cart.findIndex(p => 
+            p.details.pan === product.details.pan &&
+            p.details.carne === product.details.carne &&
+            p.details.cantidad === product.details.cantidad &&
+            JSON.stringify(p.details.extras) === JSON.stringify(product.details.extras)
+        );
+        if (existIndex !== -1) {
+            cart[existIndex].quantity++;
+        } else {
+            cart.push(product);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert('✔ Agregado al carrito');
+        window.location.href = '/';
+    }
+
+    updateBurger();
 </script>
 
 </body>
